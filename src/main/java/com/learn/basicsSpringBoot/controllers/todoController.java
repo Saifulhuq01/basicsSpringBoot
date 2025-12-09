@@ -76,7 +76,9 @@ public class todoController {
     }
 
     @DeleteMapping("/{id}")
-    void deleteTodoById(@PathVariable long id){
+    ResponseEntity<String> deleteTodoById(@PathVariable long id){
         todoServices.deleteTodoById(id);
+        return ResponseEntity.ok("Todo deleted successfully");
     }
+
 }
