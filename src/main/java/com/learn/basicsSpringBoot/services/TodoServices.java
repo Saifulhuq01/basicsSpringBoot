@@ -3,6 +3,9 @@ package com.learn.basicsSpringBoot.services;
 import com.learn.basicsSpringBoot.model.Todo;
 import com.learn.basicsSpringBoot.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +40,12 @@ public class TodoServices {
 //    delete by using id
     public void deleteTodoById(Long id){
         todoRepository.delete(getTodoId(id));
+    }
+
+//    pagination:
+    public Page<Todo> getAllTodoPaged(int page, int size){
+        Pageable pageable = PageRequest.of(page,size);
+        return todoRepository.findAll(pageable);
     }
 
 }

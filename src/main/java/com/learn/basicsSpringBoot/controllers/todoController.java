@@ -3,6 +3,7 @@ package com.learn.basicsSpringBoot.controllers;
 import com.learn.basicsSpringBoot.model.Todo;
 import com.learn.basicsSpringBoot.services.TodoServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -81,4 +82,11 @@ public class todoController {
         return ResponseEntity.ok("Todo deleted successfully");
     }
 
+
+//    http://localhost:8080/todo/page?page=0&size=5
+//    http://localhost:8080/todo/page?page=1&size=5
+    @GetMapping("/page")
+    ResponseEntity<Page<Todo>> getAllTodosPaged(@RequestParam int page, @RequestParam int size){
+        return new ResponseEntity<>(todoServices.getAllTodoPaged(page,size), HttpStatus.OK);
+    }
 }
