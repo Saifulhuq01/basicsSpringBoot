@@ -2,6 +2,8 @@ package com.learn.basicsSpringBoot.controllers;
 
 import com.learn.basicsSpringBoot.model.Todo;
 import com.learn.basicsSpringBoot.services.TodoServices;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,6 +51,11 @@ public class todoController {
 
 //    todo aplication code start
 
+//    swagger doc check http://localhost:8080/swagger-ui/index.html
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="200", description = "working"),
+            @ApiResponse(responseCode = "500", description = "go and check api because its 500 error")
+    })
     @PostMapping("/create")
 //    http://localhost:8080/todo/create
     ResponseEntity<Todo> createUser(@RequestBody Todo todo ){
