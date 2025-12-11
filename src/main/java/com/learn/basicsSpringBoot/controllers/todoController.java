@@ -2,6 +2,7 @@ package com.learn.basicsSpringBoot.controllers;
 
 import com.learn.basicsSpringBoot.model.Todo;
 import com.learn.basicsSpringBoot.services.TodoServices;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todo")
+@Slf4j
 public class todoController {
 
     @Autowired
@@ -61,6 +63,9 @@ public class todoController {
             Todo GetTodoById = todoServices.getTodoId(id);
             return  new ResponseEntity<>(GetTodoById, HttpStatus.OK);
         }catch (RuntimeException exception){
+            log.info("Error");
+            log.warn("careful");
+            log.error("error with exception",exception);
             return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
