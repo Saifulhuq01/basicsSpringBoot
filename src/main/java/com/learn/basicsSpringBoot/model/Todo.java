@@ -3,8 +3,10 @@ package com.learn.basicsSpringBoot.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Data
@@ -14,10 +16,14 @@ public class Todo {
     @GeneratedValue
     Long id;
     @NotNull
+    @NotBlank
     String title;
     @NotNull
+    @NotBlank
     String description;
-    @NotNull
     Boolean isCompleted;
+
+    @Email
+    String email;
 
 }
